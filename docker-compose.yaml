@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+
+services:
+  redis:
+    image: redis:latest
+    container_name: images_redis
+    restart: unless-stopped
+    volumes:
+      - /media/mika/e821e31d-8af3-4cd0-9fef-a5a11faa8b8e1/VOLUMES/FILEUPLOAD2/REDIS:/data
+    ports:
+      - "6479:6379"
+    command: ["redis-server", "--save", "99 1", "--loglevel", "warning"]
+    networks:
+      - my_network
+
+
+
+
+
+  flask-uploader:
+    build: .
+    container_name: flask_uploader
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - /media/mika/e821e31d-8af3-4cd0-9fef-a5a11faa8b8e1/VOLUMES/FILEUPLOAD2/uploads:/app/uploads
+    environment:
+      - FLASK_ENV=development
+      - REDIS_HOST=images_redis
+      - REDIS_PORT=6379 # use container INTERNAL port
+    depends_on:
+      - redis
+    networks:
+      - my_network
+
+networks:
+    my_network:
+      driver: bridge
