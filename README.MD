@@ -40,3 +40,9 @@ curl -X GET http://localhost:5000/api/get_all_keys
 ### Check both container logs
 
 *docker-compose logs -f*
+
+## Shutdown process
+
+Always use the provided script to safely shut down the service and persist Redis data:
+
+*sh ./safe-shutdown.sh*
