@@ -26,11 +26,12 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - /media/mika/e821e31d-8af3-4cd0-9fef-a5a11faa8b8e1/VOLUMES/FILEUPLOAD2/uploads:/app/uploads
+      - /media/mika/e821e31d-8af3-4cd0-9fef-a5a11faa8b8e2/VOLUMES/FILEUPLOAD2/uploads:/app/uploads
     environment:
       - FLASK_ENV=development
       - REDIS_HOST=images_redis
       - REDIS_PORT=6379 # use container INTERNAL port
+      - UPLOAD_FOLDER=/app/uploads
     depends_on:
       - redis
     networks:
