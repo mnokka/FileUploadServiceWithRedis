@@ -18,6 +18,11 @@ docker-compose up --build
 *http://localhost:5000/*
 
 
+![Upload UI](upload.png)
+
+
+
+
 ### Add image
 
 *curl -X POST -F "name=Mika" -F "file=@kuva.png" http://localhost:5000/upload*
